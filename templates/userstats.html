@@ -1,0 +1,84 @@
+<html>
+  <head>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'images/titleLogo.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/stats.css' %}" />
+    <title>ChicoGuessr</title>
+    <nav>
+      <a href = "/" tabindex="1">
+        <img src = "{%static 'images/logo.svg' %}" />
+      </a>
+    </nav>
+  </head>
+  <body>
+    <button class = "home" onclick="window.location.href='/';">
+      <img src="{%static 'images/home-icon.svg' %}">
+      RETURN HOME
+    </button>
+    <div class="container">
+      <div class="user-info">
+        <div>
+          <h1 class = "title">Hi {{ request.user.username }}:</h1>
+        </div>
+          <h2 id = "userE" class = "userEmail">// here are your statistics:</h2>
+        <!-- <h2 class = "userEmail">// Email: {{ request.user.email }}</h2> -->
+        <div class = "userWrapper">
+          <div class = "userScore">
+            <h2>Highest Score:</h2>
+            <p id = "userH">{{ high_score }}</p>
+          </div>
+          <div class = "userPlayed">
+            <h2>Latest Score:</h2>
+            <p id ="userL">{{ last_score }}</p>
+          </div>
+          <div class = "userAverage">
+            <h2>Average Score:</h2>
+            <p id = "userA">{{ average_score}}</p>
+          </div>
+          <div class = "userLowest">
+            <h2>Lowest Score:</h2>
+            <p id = "userL2">{{ lowest_score }}</p>
+          </div>
+          <div class = "userCreation">
+            <h2>Account Created On:</h2>
+            <p id = "userC">{{ created_at }}</p>
+          </div>
+          <div class = "userGames">
+            <h2>Games Played:</h2>
+            <p id = "userG">{{ games_played }}</p>
+          </div>
+          <div class = "userPosition">
+            <h2>Leaderboard #:</h2>
+            <p id = "userP">{{ user_position }}</p>
+          </div>
+        </div>
+        <button onclick ="window.location.reload()"  id = "resetBtn"> 
+          RESET
+        </button>
+      </div>
+      <div class="leaderboard">
+        <div class = "titleWrapper">
+          <h1 class = "title">Global Leaderboard</h1> 
+          <img src = "{%static 'images/icon.svg' %}" title="click on a user's username to view their stats!" />
+        </div>
+        <table>
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Score</th>
+          </tr>
+          {% for score in leaderboard %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td style = "cursor:pointer;" class="user-username" data-username="{{ score.user.username }}" data-userid="{{ score.user.id }}">{{ score.user.username }}</td>
+              <td>{{ score.score }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </body>
+  <style>
+  </style>
+  <script src="{% static 'js/stats.js' %}"></script>
+</html>

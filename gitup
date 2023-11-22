@@ -1,0 +1,6 @@
+#!/bin/bash
+git stash
+git pull
+docker build -t us.gcr.io/chicogussr/final:latest6 .
+docker push us.gcr.io/chicogussr/final:latest6
+gcloud compute instance-groups managed rolling-action restart instance-group-1 --zone=us-central1-a

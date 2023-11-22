@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/png" href="{%static 'images/titleLogo.png' %}"/>
+        <link rel="stylesheet" href="{%static 'css/stats.css' %}?v=2" />
+        <title>ChicoGuessr</title>
+        <nav>
+            <a href = "/" tabindex="1">
+              <img src = "{%static 'images/logo.svg' %}" />
+            </a>
+          </nav>
+    </head>
+    <body>
+        <button class = "home" onclick="window.location.href='/';">
+            <img src="{%static 'images/home-icon.svg' %}">
+            RETURN HOME
+          </button>
+          <div class ="container">
+            <div class = "data numan">
+              <img src="{%static 'images/numan.png' %}" />
+              <p>
+                Hi, my name is Numan Khan. I'm a second semester sophomore studying Computer Science here. 
+                Some things I enjoy are playing video games and watching soccer. Thats really about it. My future
+                goal is to make a good amount of money.
+              </p>
+            </div>
+            <div class = "data luke"> 
+              <img src="{%static 'images/luke.jpg' %}" />
+              <p>Hey, my name is Luke Hazelton. I'm a second semester junior studying computer science at CSU Chico. 
+                Some things I enjoy are playing video games or just spending time with friends. I would say a 
+                major current goal of mine would be to get hired on for a CompSci internship or job for the summer.</p>
+            </div>
+          </div>
+    </body>
+    <style>
+      @media screen and (max-width: 850px) {
+        .container {
+          flex-direction: column;
+        }
+        .data {
+          width: 100%;
+        }
+        .numan .luke {
+          justify-content: center;
+        }
+        .numan img, .luke img{
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    </style>
+</html>

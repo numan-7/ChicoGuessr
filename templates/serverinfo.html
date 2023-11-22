@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <link rel="icon" type="image/png" href="{%static 'images/titleLogo.png' %}"/>
+        <link rel="stylesheet" href="{%static 'css/stats.css' %}" />
+        <title>ChicoGuessr</title>
+        <nav>
+            <a href = "/" tabindex="1">
+              <img src = "{%static 'images/logo.svg' %}" />
+            </a>
+          </nav>
+    </head>
+    <body>
+        <button class = "home" onclick="window.location.href='/';">
+            <img src="{%static 'images/home-icon.svg' %}">
+            RETURN HOME
+          </button>
+          <br/>
+          <br />
+        <div class = "data">
+            {{combined_data}}
+        </div>
+    </body>
+</html>

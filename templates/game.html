@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="{%static 'images/titleLogo.png' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/game.css' %}?v=3.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChicoGuessr</title>
+  </head>
+  <body>
+    <div class = "home-label">
+      <a href="/">
+        <img title = "return home"src="{%static 'images/home-icon.svg' %}">
+      </a>
+    </div>
+    <div class="pageLabel">
+      <p>ROUND {{round}}/5</p>
+    </div>
+    <div class = "resetBtn">
+      <p title = "return to orignal position" onclick="resetLocation()">BACKTRACK</p>
+    </div>    
+    <div id="pano"></div>
+    <div id="mapWrapper">
+      <div id="map"></div>
+        <form id="guess-form" method="post">
+          <div style="display: none;">
+            {% csrf_token %}
+            {{ form.as_p }}
+          </div>
+        <button id="submitButton" type="submit" name="coords_guess" disabled>Submit</button>
+      </form>
+    </div>
+    <script src="{% url 'street' %}" defer></script>
+    <script>
+      let panorama;
+      let map;
+      let marker;
+
+      function resetLocation(){
+        panorama.setPosition({lat: {{lat}}, lng: {{lng}}});
+      }
+
+      function initStreetView() {
+        // Set the panorama options
+        panorama = new google.maps.StreetViewPanorama(document.getElementById("pano"), {
+          position: {
+            lat: {{lat}}, lng: {{lng}}
+          },
+          pov: {
+            heading: 0,
+            pitch: 0
+          },
+          fullscreenControl: false,
+          disableDefaultUI: true,
+          showRoadLabels: false,
+        });
+        // Set the map options
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: {
+            lat: 39.728493,
+            lng: -121.837479
+          },
+          disableDefaultUI: true,
+          fullscreenControl: true,
+          keyboardShortcuts: false,
+        });
+        // Disable double click zoom
+        map.setOptions({
+          disableDoubleClickZoom: true,
+          clickableIcons: false,
+          styles: [
+            {
+              featureType: 'transit',
+              elementType: 'labels',
+              stylers: [{visibility: 'off'}]
+            },
+          ]
+        });
+
+        // Update the hidden form fields with the initial marker position
+        updateFormFields(map.getCenter().lat(), map.getCenter().lng());
+        // Update the marker position when the user double clicks on the map
+
+        map.addListener("dblclick", (event) => {
+          if (marker) {
+            marker.setPosition(event.latLng);
+          } else {
+            marker = new google.maps.Marker({
+              position: event.latLng,
+              map: map,
+              draggable: false,
+            });
+          }
+          const submitButton = document.getElementById("submitButton")
+          submitButton.disabled = false;
+          const lat = event.latLng.lat();
+          const lng = event.latLng.lng();
+          updateFormFields(lat, lng);
+        });
+      }
+      const updateFormFields = (lat, lng) => {
+        const guessLatField = document.getElementById("id_guessLat");
+        const guessLngField = document.getElementById("id_guessLng");
+        guessLatField.value = lat;
+        guessLngField.value = lng;
+      }
+      const mappy = document.getElementById("mapWrapper")
+      const actualMap = document.getElementById("map")
+      const submitBtn = document.getElementById("submitButton")
+      if (window.innerWidth > 750 && window.innerHeight > 600) {
+        mappy.addEventListener('mouseover', () => {
+          actualMap.style.height = '400px';
+          actualMap.style.width = '550px';
+        });
+        mappy.addEventListener('mouseleave', () => {
+          actualMap.style.height = '250px';
+          actualMap.style.width = '250px';
+        });
+      } else {
+        mappy.addEventListener("touchstart", () => {
+          document.getElementById("mapWrapper").style.opacity = "1";
+        })
+        mappy.addEventListener("touchend", () => {
+        document.getElementById("mapWrapper").style.opacity = "0.55";
+      });
+      }
+      // Make the initStreetView function global
+      window.initStreetView = initStreetView;
+    </script>
+  </body>
+</html>

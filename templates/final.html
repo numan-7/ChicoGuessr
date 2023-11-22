@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <link rel="icon" type="image/png" href="{%static 'images/titleLogo.png' %}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{%static 'css/result.css' %}" />
+        <title>ChicoGuessr</title>
+    </head>
+    <body>
+        <div id="map"></div>
+        <div class = "wrapper">
+            <p id="score" style ="margin-top: 0; font-size: 2rem; text-align: center;" class="score"></p>
+            <progress value="0" max="5000"> </progress>
+            <button onclick="window.location.href='/';">RETURN HOME</button>
+        </div>
+    </body>
+    <script src="{% url 'map' %}" defer></script>       
+    <script>
+        function initMap() {
+            let map = new google.maps.Map(document.getElementById('map'), {
+                disableDefaultUI: true, // disable all default UI elements
+                zoom: 13,
+                center: {
+                lat: 39.728493,
+                lng: -121.837479
+                },
+                styles: [{
+                    featureType: 'poi',
+                    elementType: 'labels',
+                    stylers: [{
+                    visibility: 'off'
+                    }]
+                },
+                {
+                    featureType: 'transit',
+                    elementType: 'labels',
+                    stylers: [{
+                    visibility: 'off'
+                    }]
+                }
+                ]
+            });
+            // Create a flag icon for the correctMarker
+            const flagIcon = {
+                url: "{% static 'images/flag.png' %}",
+                scaledSize: new google.maps.Size(32, 32),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(16, 16)
+            };
+            // Loop through the array of coordinates and create a new marker for each one
+            let coords = {{guesses}};
+            for (let i = 0; i < coords.length; i++) {
+                    let guessCoords = [coords[i][0], coords[i][1]];
+                    let correctCoords = [coords[i][2], coords[i][3]];
+                    let guessMarker = new google.maps.Marker({
+                        position: new google.maps.LatLng(guessCoords[0], guessCoords[1]),
+                        map: map,
+                        title: 'Guess Location'
+                });
+                let correctMarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(correctCoords[0], correctCoords[1]),
+                    map: map,
+                    icon: flagIcon,
+                    title: 'Correct Location'
+                });
+                const lineSymbol = {
+                    path: "M 0,-1 0,1",
+                    strokeOpacity: 0.50,
+                    scale: 4,
+                };
+                let line = new google.maps.Polyline({
+                    path: [{
+                        lat: correctCoords[0],
+                        lng: correctCoords[1]
+                        },
+                        {
+                        lat: guessCoords[0],
+                        lng: guessCoords[1]
+                        }
+                    ],
+                    strokeOpacity: 0,
+                    icons: [{
+                        icon: lineSymbol,
+                        offset: "0",
+                        repeat: "20px",
+                    }, ],
+                    geodesic: true,
+                    map: map
+                });
+            }
+        }
+        function countUp() {
+            let scorey = {{final_score}}
+            let scoreEl = document.getElementById('score');
+            if(scorey > 100){
+                let score = {{final_score}}-100;
+                let intervalId = setInterval(function() {
+                    score++;
+                    scoreEl.innerHTML = `<span style ="margin-bottom: 0; font-size: 1rem;">Your final score is:</span> <br/>${score.toLocaleString()} points`;
+                    if (score === {{final_score}}) {
+                        clearInterval(intervalId);
+                    }
+                }, 10);
+            } else {
+                scoreEl.innerHTML = `<span style ="margin-bottom: 0; font-size: 1rem;">Your final score is:</span> <br/>${scorey} points`;
+            }
+        }
+        window.initMap = initMap;       
+        countUp()
+        const root = document.documentElement;
+        root.style.setProperty('--value', {{final_score}}/5);
+    </script>
+</html>

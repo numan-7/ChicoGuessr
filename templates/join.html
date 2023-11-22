@@ -1,0 +1,28 @@
+<html>
+  <head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="{%static 'images/titleLogo.png' %}"/>
+    <link rel="stylesheet" href="{%static 'css/join.css' %}" />
+    <title>ChicoGuessr</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class = "pageLabelWrapper">
+        <div class = "pageLabel">
+          <p>Sign up for free to start playing!</p>
+        </div>
+      </div>
+      <div>
+      <form method="POST">{% csrf_token %}
+      {{ join_form.as_table }}
+      <div class = "inputWrapper">
+        <input id = "submitBtn" type="submit" value = "Sign Up"/>
+      </div>
+      <a href="/login">Already have an account?</a>
+      </form>
+      </div>
+    </div>
+  </body>
+</html>

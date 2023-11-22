@@ -1,0 +1,27 @@
+<html>
+  <head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="{%static 'images/titleLogo.png' %}"/>
+    <link rel="stylesheet" href="{%static 'css/login.css' %}" />
+    <title>ChicoGuessr</title>
+  </head>
+  <body>
+    <div class = "pageLabelWrapper">
+      <div class = "pageLabel">
+        <p>Log In</p>
+      </div>
+    </div>
+    <div class="container">
+      <form action="/login/" method="POST">
+       {{ login_form }}
+        {% csrf_token %}
+        {% if correct == False %}
+        <p style = "color:rgb(209, 64, 64);">Invalid Username and or Password</p>
+        {% endif %}
+        <input id = "submitBtn" type="submit"  value = "Login"/>
+        <a href="/join">Create an account</a>
+        </form>
+    </div>
+  </body>
+</html>
