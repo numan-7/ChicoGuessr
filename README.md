@@ -1,7 +1,7 @@
 # ChicoGuessr - GeoGuessr Clone
 
 GeoGuessr clone based in Chico, California:
-<a href="https://www.youtube.com/watch?v=5f4Sn2td6gI" target="_blank">View Here</a>
+<a href="https://www.youtube.com/watch?v=5f4Sn2td6gI" target="_blank">Preview Here</a>
 ## Setup
 
 The first thing to do is to clone the repository:
