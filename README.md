@@ -10,11 +10,19 @@ The first thing to do is to clone the repository:
 $ git clone git@github.com:ChicoState/ChicoGuessr.git
 $ cd ChicoGuessr
 ```
-Get your [Google Maps JS API Key](https://console.cloud.google.com/).
+Get your [Google Maps JS API Key](https://console.cloud.google.com/). <br/>
 Then create a .env in the current directory & add your API key inside it like this:
 ```sh
-$ API_KEY="<KEY>"
+1 API_KEY="<KEY>"
 ```
+Get your [Django Secret Key](https://djecrety.ir/). <br/>
+Then add it into the .env:
+```sh
+1 API_KEY="<KEY>"
+2 SECRET_KEY = "<KEY>"
+3 DEBUG = false
+```
+
 
 Create a virtual environment to install dependencies in and activate it:
 
