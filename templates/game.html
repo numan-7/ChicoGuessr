@@ -15,7 +15,12 @@
       </a>
     </div>
     <div class="pageLabel">
-      <p>ROUND {{round}}/5</p>
+      <div id="borderTop" class="border"></div>
+      <div id="borderRight" class="border"></div>
+      <div id="borderBottom" class="border"></div>
+      <div id="borderLeft" class="border"></div>
+      <p>TIME <span id = "time">01:00</span></p>
+      <p>&nbsp;| ROUND {{round}}/5</p>
     </div>
     <div class = "resetBtn">
       <p title = "return to orignal position" onclick="resetLocation()">BACKTRACK</p>
@@ -109,6 +114,9 @@
       const mappy = document.getElementById("mapWrapper")
       const actualMap = document.getElementById("map")
       const submitBtn = document.getElementById("submitButton")
+      submitBtn.addEventListener("click" , () => {
+        localStorage.setItem("time", 60)
+      })
       if (window.innerWidth > 750 && window.innerHeight > 600) {
         mappy.addEventListener('mouseover', () => {
           actualMap.style.height = '400px';
@@ -126,6 +134,27 @@
         document.getElementById("mapWrapper").style.opacity = "0.55";
       });
       }
+
+      const timerElement = document.getElementById("time");
+      let totalTime = localStorage.getItem("time") || 60;
+      const countdown = setInterval(() => {
+          let minutes = Math.floor(totalTime / 60);
+          let seconds = totalTime % 60;
+          minutes = minutes < 10 ? '0' + minutes : minutes;
+          seconds = seconds < 10 ? '0' + seconds : seconds;
+          timerElement.textContent = minutes + ":" + seconds;
+          localStorage.setItem("time", seconds)
+          if (totalTime <= 0) {
+              clearInterval(countdown);
+              localStorage.setItem("time", 60)
+              document.getElementById("id_guessLat").value = -1;
+              document.getElementById("id_guessLng").value = -1;
+              document.getElementById("submitButton").disabled = false;
+              document.getElementById("submitButton").click();
+          }
+          totalTime--;
+      }, 1000);
+
       // Make the initStreetView function global
       window.initStreetView = initStreetView;
     </script>

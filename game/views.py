@@ -98,10 +98,6 @@ def home(request):
     return render(request, 'home.html')
 
 @login_required(login_url='/login/')
-def about_us(request):
-    return render(request, 'about.html')
-
-@login_required(login_url='/login/')
 def loadStreetAPI(request):
     if request.META.get('HTTP_SEC_FETCH_DEST') == 'document':
         return HttpResponseForbidden("L")
@@ -158,15 +154,19 @@ def game(request):
             guess_lat = float(form.cleaned_data['guessLat'])
             guess_lng = float(form.cleaned_data['guessLng'])
             # Get Distance Difference
-            distance = calculate_distance(lat, lng, guess_lat, guess_lng)
-            # Calculate Score
-            if(distance < 0.0325):
-                score = 5000
+            if(guess_lat != -1 and guess_lng != -1):
+                distance = calculate_distance(lat, lng, guess_lat, guess_lng)
+                # Calculate Score
+                if(distance < 0.0325):
+                    score = 5000
+                else:
+                    score = 5000 * math.exp(-0.15 * distance)
+                # Convert To Miles
+                distance *= 0.621371
+                # Update game state
             else:
-                score = 5000 * math.exp(-0.15 * distance)
-            # Convert To Miles
-            distance *= 0.621371
-            # Update game state
+                score = 0
+                distance = -1
             user_game.save_game(user_game.score + score, user_game.round + 1, user_game.guesses + [(guess_lat, guess_lng, lat, lng)], "")
             # Round Distance
             mile_difference = round(distance, 2)
@@ -240,11 +240,3 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect("/")
-
-@login_required(login_url='/login/')
-def server_info(request):
-    server_geodata = requests.get('https://ipwhois.app/json/').json()
-    settings_dump = settings.__dict__
-    combined_data = {**server_geodata, **settings_dump}
-    context = {'combined_data': combined_data}
-    return render(request, 'serverinfo.html', context)

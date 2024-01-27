@@ -97,13 +97,12 @@ html {
   cursor: default;
 }
 
-.home-label, .pageLabel, .resetBtn{
+.home-label, .pageLabel, .resetBtn, .timeLabel{
   z-index: 2;
   position: absolute;
 
   font-family: 'Neo-Sans';
   font-weight: 700;
-  font-style: italic;
   text-transform: uppercase;
   user-select: none;
   background-color: rgba(16,16,28,.4);
@@ -119,7 +118,6 @@ html {
 
 .resetBtn{
   transition: 500ms ease-in-out;
-  transform: skew(-12deg);
   top: 1rem;
   left: 5rem;
   padding-bottom: .23rem;
@@ -139,7 +137,6 @@ html {
 
 .home-label{
   margin-top: 1rem;
-  transform: skew(-12deg);
   margin-left: 1rem;
   transition: 500ms ease-in-out;
 }
@@ -156,18 +153,16 @@ html {
 }
 
 .pageLabel{
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transform: skew(-12deg);
+  /* this transform somehow makes the margin-top wokr dont delete this lol */
+  right: 1rem;
+  transform: skew(0deg);
   margin-top: 1rem;
   padding-bottom: .23rem;
   padding-top: .23rem;
   padding-right: .50rem;
   padding-left: .50rem;
-}
-
-.pageLabel p {
-  transform: skew(12deg);
+  display: flex;
+  justify-content: space-between;
 }
 
 #submitButtonOverlay {

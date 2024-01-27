@@ -52,43 +52,45 @@
             // Loop through the array of coordinates and create a new marker for each one
             let coords = {{guesses}};
             for (let i = 0; i < coords.length; i++) {
-                    let guessCoords = [coords[i][0], coords[i][1]];
-                    let correctCoords = [coords[i][2], coords[i][3]];
-                    let guessMarker = new google.maps.Marker({
-                        position: new google.maps.LatLng(guessCoords[0], guessCoords[1]),
-                        map: map,
-                        title: 'Guess Location'
-                });
+                let guessCoords = [coords[i][0], coords[i][1]];
+                let correctCoords = [coords[i][2], coords[i][3]];
                 let correctMarker = new google.maps.Marker({
                     position: new google.maps.LatLng(correctCoords[0], correctCoords[1]),
                     map: map,
                     icon: flagIcon,
                     title: 'Correct Location'
                 });
-                const lineSymbol = {
-                    path: "M 0,-1 0,1",
-                    strokeOpacity: 0.50,
-                    scale: 4,
-                };
-                let line = new google.maps.Polyline({
-                    path: [{
-                        lat: correctCoords[0],
-                        lng: correctCoords[1]
-                        },
-                        {
-                        lat: guessCoords[0],
-                        lng: guessCoords[1]
-                        }
-                    ],
-                    strokeOpacity: 0,
-                    icons: [{
-                        icon: lineSymbol,
-                        offset: "0",
-                        repeat: "20px",
-                    }, ],
-                    geodesic: true,
-                    map: map
-                });
+                if(guessCoords[0] != -1 && guessCoords[1] != -1) {
+                    let guessMarker = new google.maps.Marker({
+                            position: new google.maps.LatLng(guessCoords[0], guessCoords[1]),
+                            map: map,
+                            title: 'Guess Location'
+                    });
+                    const lineSymbol = {
+                        path: "M 0,-1 0,1",
+                        strokeOpacity: 0.50,
+                        scale: 4,
+                    };
+                    let line = new google.maps.Polyline({
+                        path: [{
+                            lat: correctCoords[0],
+                            lng: correctCoords[1]
+                            },
+                            {
+                            lat: guessCoords[0],
+                            lng: guessCoords[1]
+                            }
+                        ],
+                        strokeOpacity: 0,
+                        icons: [{
+                            icon: lineSymbol,
+                            offset: "0",
+                            repeat: "20px",
+                        }, ],
+                        geodesic: true,
+                        map: map
+                    });
+                }
             }
         }
         function countUp() {

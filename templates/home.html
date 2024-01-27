@@ -7,12 +7,12 @@
     <link rel="icon" type="image/png" href="{%static 'images/titleLogo.png' %}"/>
     <link rel="stylesheet" href="{%static 'css/home.css' %}?v=2.1" />
     <title>ChicoGuessr</title>
-    <nav>
-      <a href = "/" tabindex="1">
-        <img src = "{%static 'images/logo.svg' %}" />
-      </a>
-    </nav>
   </head>
+  <nav>
+    <a href = "/" tabindex="1">
+      <img src = "{%static 'images/logo.svg' %}" alt = "Chico Guessr Logo" />
+    </a>
+  </nav>
   <body>
     <div class = "body-wrapper">
       <div class = "menu-wrapper">
@@ -22,20 +22,12 @@
         <a href = "/userstats/" class = "menu-button" tabindex="3" draggable="false">
           <span class = "menu-title">User Stats</span>
         </a>
-        <a href = "/aboutus/" class = "menu-button" tabindex="4" draggable="false">
-          <span class = "menu-title">About Us</span>
-        </a>
-        <a href = "/server_info/" class = "menu-button" tabindex="5" draggable="false">
-          <span class = "menu-title">Server Info</span>
-        </a>
         {% if user.is_authenticated %}
 
           <a href = "/logout/" class = "menu-button" tabindex="5" draggable="false">
             <span id = "logout" class = "menu-title">Logout</span>
           </a>
-
         {% else %}
-
           <a href = "/login/" class = "menu-button" tabindex="5" draggable="false">
             <span id = "login" class = "menu-title">Login</span>
           </a>

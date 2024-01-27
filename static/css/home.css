@@ -26,8 +26,7 @@
 
 body {
   height: 100%;
-  background: rgb(26,26,46);
-  background: linear-gradient(180deg, rgba(26,26,46,1) 0%, rgba(16,16,28,1) 100%);
+  background: radial-gradient(66.5% 221.21% at 136.03% -61.44%,rgba(37, 32, 87, 0.4) 0%,rgba(95, 92, 119, 0) 92.09%),radial-gradient(93.54% 126.91% at 29.15% -56.29%,rgba(122, 122, 122, 0.7) 0%,rgba(233,69,96,0) 92.09%),radial-gradient(86.19% 101.84% at -17.13% -24.8%,rgba(0,162,254,.7) 0%,rgba(0,162,254,0) 92.09%),#1a1a2e;
   background-attachment: fixed;
   margin: 0;
   padding: 0;
@@ -37,7 +36,7 @@ body {
 
 nav img {
   margin-top: 1rem;
-  margin-left: 3rem;
+  margin-left: 2.5rem;
   width: 250px;
   transition: 100ms ease-in-out;
   user-select: none;
@@ -74,7 +73,7 @@ nav img:hover {
 }
 
 .menu-title {
-  transition: 100ms ease-in-out;
+  transition: 150ms ease-in-out;
   font-family: 'Neo-sans';
   font-style: italic;
   font-weight: 700;
@@ -85,7 +84,7 @@ nav img:hover {
 
 .menu-title:hover {
   color: #9f86c0;
-  font-size: 4rem;
+  font-size: 3.6rem;
 }
 
 #logout:hover {

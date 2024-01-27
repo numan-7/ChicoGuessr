@@ -11,16 +11,18 @@
     <body>
         <div id="map"></div>
         <div class = "wrapper">
-            <!-- <div class = "scoreWrapper"> -->
                 <p class = "score">{{ score }} points</p>
                 <progress value="0" max="5000"> </progress>
-                <p>Your guess was <strong>{{ mile_difference }} mi </strong>from the correct location.</p>
+                {% if mile_difference != -1 %}
+                    <p>Your guess was <strong>{{ mile_difference }} mi </strong>from the correct location.</p>
+                {% else %}
+                    <p>You were <strong>unable</strong> to guess in time!</p>
+                {% endif %}
                 {% if round != 5 %}
                     <button onclick="window.location.href='/game';">PLAY NEXT ROUND</button>
                 {% else %}
                     <button onclick="window.location.href='/game';">VIEW RESULTS</button>
                 {% endif %}
-            <!-- </div> -->
         </div>
     </body>
     <script src="{% url 'map' %}" defer></script>       
@@ -72,39 +74,40 @@
             icon: flagIcon,
             title: 'Correct Location'
         });
-
-        let guessMarker = new google.maps.Marker({
-            position: {
-                lat: guessCoords[0],
-                lng: guessCoords[1]
-            },
-            map: map,
-            title: 'Guess Location'
-        });
-        const lineSymbol = {
-            path: "M 0,-1 0,1",
-            strokeOpacity: 0.50,
-            scale: 4,
-        };
-        let line = new google.maps.Polyline({
-            path: [{
-                    lat: correctCoords[0],
-                    lng: correctCoords[1]
-                },
-                {
+        if(guessCoords[0] != -1 && guessCoords[1] != -1) {
+            let guessMarker = new google.maps.Marker({
+                position: {
                     lat: guessCoords[0],
                     lng: guessCoords[1]
-                }
-            ],
-            strokeOpacity: 0,
-            icons: [{
-                icon: lineSymbol,
-                offset: "0",
-                repeat: "20px",
-            }, ],
-            geodesic: true,
-            map: map
-        });
+                },
+                map: map,
+                title: 'Guess Location'
+            });
+            const lineSymbol = {
+                path: "M 0,-1 0,1",
+                strokeOpacity: 0.50,
+                scale: 4,
+            };
+            let line = new google.maps.Polyline({
+                path: [{
+                        lat: correctCoords[0],
+                        lng: correctCoords[1]
+                    },
+                    {
+                        lat: guessCoords[0],
+                        lng: guessCoords[1]
+                    }
+                ],
+                strokeOpacity: 0,
+                icons: [{
+                    icon: lineSymbol,
+                    offset: "0",
+                    repeat: "20px",
+                }, ],
+                geodesic: true,
+                map: map
+            });
+        }
         extendToBounds(map, correctMarker, guessMarker);
         }
         function extendToBounds(map, correctMarker, guessMarker,) {

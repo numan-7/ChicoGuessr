@@ -26,8 +26,6 @@ urlpatterns = [
     path('login/', game_views.user_login),
     path('logout/', game_views.user_logout),
     path('userstats/', game_views.user_stats),
-    path('aboutus/', game_views.about_us),
-    path('server_info/',game_views.server_info),
     path('userstats/<int:userid>/', game_views.search_user_stats),
     path('street/', game_views.loadStreetAPI, name='street'),
     path('map/', game_views.loadMapAPI, name='map'),

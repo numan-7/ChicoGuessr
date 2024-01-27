@@ -27,7 +27,6 @@
 /* Nav */
 
 nav img {
-  margin-top: 1rem;
   width: 250px;
   transition: 100ms ease-in-out;
   user-select: none;
@@ -46,7 +45,7 @@ body {
   line-height: 1.6;
   color: #f0f0f0;
   background: rgb(26,26,46);
-  background: linear-gradient(180deg, rgba(26,26,46,1) 0%, rgba(16,16,28,1) 100%);
+  background: radial-gradient(66.5% 221.21% at 136.03% -61.44%,rgba(37, 32, 87, 0.4) 0%,rgba(95, 92, 119, 0) 92.09%),radial-gradient(93.54% 126.91% at 29.15% -56.29%,rgba(122, 122, 122, 0.7) 0%,rgba(233,69,96,0) 92.09%),radial-gradient(86.19% 101.84% at -17.13% -24.8%,rgba(0,162,254,.7) 0%,rgba(0,162,254,0) 92.09%),#1a1a2e;
   background-attachment: fixed;
 }
 
