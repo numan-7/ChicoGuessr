@@ -1,0 +1,1 @@
+web gunicorn ChicoGuessr.wsgi:application --log-file -
