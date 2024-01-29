@@ -114,9 +114,11 @@
       const mappy = document.getElementById("mapWrapper")
       const actualMap = document.getElementById("map")
       const submitBtn = document.getElementById("submitButton")
-      submitBtn.addEventListener("click" , () => {
-        localStorage.setItem("time", 60)
-      })
+
+      document.getElementById("guess-form").addEventListener("submit", () => {
+        localStorage.clear();
+      });
+      
       if (window.innerWidth > 750 && window.innerHeight > 600) {
         mappy.addEventListener('mouseover', () => {
           actualMap.style.height = '400px';
