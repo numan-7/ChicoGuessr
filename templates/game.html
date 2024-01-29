@@ -114,11 +114,6 @@
       const mappy = document.getElementById("mapWrapper")
       const actualMap = document.getElementById("map")
       const submitBtn = document.getElementById("submitButton")
-
-      document.getElementById("guess-form").addEventListener("submit", () => {
-        localStorage.clear();
-      });
-      
       if (window.innerWidth > 750 && window.innerHeight > 600) {
         mappy.addEventListener('mouseover', () => {
           actualMap.style.height = '400px';
@@ -138,17 +133,29 @@
       }
 
       const timerElement = document.getElementById("time");
-      let totalTime = localStorage.getItem("time") || 60;
+      // Retrieve the current round number
+      const currentRound = {{round}}; 
+      let storedRound = localStorage.getItem("round");
+      let totalTime;
+      // Check if the stored round matches the current round
+      if (storedRound && parseInt(storedRound) === currentRound) {
+          // Use stored time if rounds match
+          totalTime = parseInt(localStorage.getItem("time")) || 60;
+      } else {
+          // Reset time to 60 seconds if rounds do not match
+          totalTime = 60;
+      }
       const countdown = setInterval(() => {
           let minutes = Math.floor(totalTime / 60);
           let seconds = totalTime % 60;
           minutes = minutes < 10 ? '0' + minutes : minutes;
           seconds = seconds < 10 ? '0' + seconds : seconds;
           timerElement.textContent = minutes + ":" + seconds;
-          localStorage.setItem("time", seconds)
+          // Store the current round and time in localStorage
+          localStorage.setItem("time", totalTime);
+          localStorage.setItem("round", currentRound);
           if (totalTime <= 0) {
               clearInterval(countdown);
-              localStorage.setItem("time", 60)
               document.getElementById("id_guessLat").value = -1;
               document.getElementById("id_guessLng").value = -1;
               document.getElementById("submitButton").disabled = false;
