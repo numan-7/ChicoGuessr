@@ -207,6 +207,7 @@ def join(request):
             N_user = jform.save()
             N_user.set_password(N_user.password)
             N_user.save()
+            login(request, N_user)
             score_instance = Score.objects.create(user=N_user, created_at=timezone.now())
             score_instance.save()
             return redirect("/")
