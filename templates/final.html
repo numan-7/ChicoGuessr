@@ -2,11 +2,10 @@
 <html>
     <head>
         {% load static %}
-        <meta charset="utf-8">
+        {% include "meta.html" %}
         <link rel="icon" type="image/png" href="{%static 'images/titleLogo.png' %}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="{%static 'css/result.css' %}" />
-        <title>ChicoGuessr</title>
     </head>
     <body>
         <div id="map"></div>
