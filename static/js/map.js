@@ -135,5 +135,14 @@ const countdown = setInterval(() => {
   totalTime--;
 }, 1000);
 
+document.addEventListener('keydown', (e) => {
+  if (e.code === "Space") {
+    if(parseFloat(document.getElementById("id_guessLat").value) != 39.728493 && parseFloat(document.getElementById("id_guessLng").value) != -121.837479) {
+      document.getElementById("submitButton").disabled = false;
+      document.getElementById("submitButton").click();
+    }
+  }
+});
+
 // Make the initStreetView function global
 window.initStreetView = initStreetView;
