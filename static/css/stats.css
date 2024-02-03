@@ -26,15 +26,27 @@
 
 /* Nav */
 
-nav img {
-  width: 250px;
-  transition: 100ms ease-in-out;
-  user-select: none;
+nav h1 {
+  position: absolute;
+  left: 2.5rem;
+  top: -0.05rem;
+  font-size: 3rem;
+  font-family: 'Neo-Sans', sans-serif;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 0;
 }
 
-nav img:hover {
-  transform: translateY(-3px) translateX(3px);
+nav img {
+  height: 4rem;
+  width: 4rem;
+  position: absolute;
+  left: -1.65rem;
+  top: 0.1rem;
 }
+
 
 /* End Nav */
 
@@ -47,10 +59,11 @@ body {
   background: rgb(26,26,46);
   background: radial-gradient(66.5% 221.21% at 136.03% -61.44%,rgba(37, 32, 87, 0.4) 0%,rgba(95, 92, 119, 0) 92.09%),radial-gradient(93.54% 126.91% at 29.15% -56.29%,rgba(122, 122, 122, 0.7) 0%,rgba(233,69,96,0) 92.09%),radial-gradient(86.19% 101.84% at -17.13% -24.8%,rgba(0,162,254,.7) 0%,rgba(0,162,254,0) 92.09%),#1a1a2e;
   background-attachment: fixed;
+  position: relative;
 }
 
 .home {
-  margin-top: 2rem;
+  margin-top: 5rem;
   border: none;
   font: inherit;
   font-weight: 700;
@@ -151,6 +164,7 @@ body {
 .userWrapper h2{
   margin: 0;
   padding: 0;
+  text-transform: uppercase;
 }
 
 .userScore:hover, .userPlayed:hover, .userGames:hover, .userCreation:hover, .userPosition:hover, .userAverage:hover, .userLowest:hover{
@@ -179,7 +193,6 @@ body {
 .userScore p, .userPlayed p, .userGames p, .userCreation p, .userPosition p, .userAverage p, .userLowest p{
   color: #ee9b00;
   font-weight: bold;
-  font-style: italic;
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -197,7 +210,7 @@ body {
 }
 
 .userGames p {
-  color: rgb(81, 81, 121)
+  color: rgb(81, 81, 121);
 }
 
 .userCreation p {

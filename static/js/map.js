@@ -125,13 +125,24 @@ const countdown = setInterval(() => {
   localStorage.setItem("round", currentRound);
   if (totalTime <= 0) {
     clearInterval(countdown);
-    document.getElementById("id_guessLat").value = -1;
-    document.getElementById("id_guessLng").value = -1;
+    if(parseFloat(document.getElementById("id_guessLat").value) == 39.728493 && parseFloat(document.getElementById("id_guessLng").value) == -121.837479) {
+      document.getElementById("id_guessLat").value = -1;
+      document.getElementById("id_guessLng").value = -1;
+    }
     document.getElementById("submitButton").disabled = false;
     document.getElementById("submitButton").click();
   }
   totalTime--;
 }, 1000);
+
+document.addEventListener('keydown', (e) => {
+  if (e.code === "Space" || e.code === "Enter") {
+    if(parseFloat(document.getElementById("id_guessLat").value) != 39.728493 && parseFloat(document.getElementById("id_guessLng").value) != -121.837479) {
+      document.getElementById("submitButton").disabled = false;
+      document.getElementById("submitButton").click();
+    }
+  }
+});
 
 // Make the initStreetView function global
 window.initStreetView = initStreetView;

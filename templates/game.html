@@ -10,7 +10,7 @@
   <body>
     <div class = "home-label">
       <a href="/">
-        <img title = "return home"src="{%static 'images/home-icon.svg' %}">
+        <img title = "return home"src="{%static 'images/home-icon.svg' %}" alt = "home icon">
       </a>
     </div>
     <div class="pageLabel">
@@ -39,6 +39,6 @@
       </form>
     </div>
     <script src="{% url 'street' %}" defer></script>
-    <script src="{% static 'js/map.js' %}"></script>
+    <script src="{% static 'js/map.js' %}?v=1.0"></script>
   </body>
 </html>
