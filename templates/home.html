@@ -8,32 +8,31 @@
     <link rel="stylesheet" href="{%static 'css/home.css' %}?v=2.1" />
   </head>
   <nav>
-    <a href = "/" tabindex="1">
-      <img src = "{%static 'images/logo.svg' %}" alt = "Chico Guessr Logo" />
+    <a href = "/" tabindex="0">
+      <img src = "{%static 'images/titleLogo.png' %}" alt = "Chico Guessr Logo" />
+      <h1>CHICOGUESSR</h1>
     </a>
   </nav>
   <body>
     <div class = "body-wrapper">
-      <div class = "menu-wrapper">
-        <a href = "/game/" id = "play" class = "menu-button" tabindex="2" draggable="false">
-          <span class = "menu-title">Play</span>
+      <div class = "button-wrapper">
+        <a href = "/game/" id = "play" class = "menu-button" draggable="false">
+          <button class = "menu-title">Play</button>
+      </a>
+      <a href = "/userstats/" class = "menu-button"  draggable="false">
+          <button class = "menu-title">User Stats</button>
+      </a>
+      {% if user.is_authenticated %}
+        <a href = "/logout/" class = "menu-button" draggable="false">
+          <button id = "logout" class = "menu-title">Logout</button>
         </a>
-        <a href = "/userstats/" class = "menu-button" tabindex="3" draggable="false">
-          <span class = "menu-title">User Stats</span>
+      {% else %}
+        <a href = "/login/" class = "menu-button" draggable="false">
+          <button id = "login" class = "menu-title">Login</button>
         </a>
-        {% if user.is_authenticated %}
-
-          <a href = "/logout/" class = "menu-button" tabindex="5" draggable="false">
-            <span id = "logout" class = "menu-title">Logout</span>
-          </a>
-        {% else %}
-          <a href = "/login/" class = "menu-button" tabindex="5" draggable="false">
-            <span id = "login" class = "menu-title">Login</span>
-          </a>
-
-        {% endif %}
+      {% endif %}
       </div>
-        <img class = "globe-img" src = "{%static 'images/globe.svg' %}" />
+        <img class = "globe-img" src = "{%static 'images/globe.svg' %}" alt = "globe">
     </div>
-  </body>
+  </body>  
 </html>

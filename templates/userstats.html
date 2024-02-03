@@ -4,25 +4,25 @@
     {% include "meta.html" %}
     <link rel="icon" type="image/png" href="{% static 'images/titleLogo.png' %}" />
     <link rel="stylesheet" href="{% static 'css/stats.css' %}" />
-    <title>ChicoGuessr</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
-    <nav>
-      <a href = "/" tabindex="1">
-        <img src = "{%static 'images/logo.svg' %}" />
-      </a>
-    </nav>
-    <button class = "home" onclick="window.location.href='/';">
-      <img src="{%static 'images/home-icon.svg' %}">
+  <nav>
+    <a href = "/">
+      <img src = "{%static 'images/titleLogo.png' %}" alt = "Chico Guessr Logo" />
+      <h1>CHICOGUESSR</h1>
+    </a>
+  </nav>
+  <button class = "home" onclick="window.location.href='/';">
+      <img src="{%static 'images/home-icon.svg' %}" alt = "home icon">
       RETURN HOME
     </button>
     <div class="container">
       <div class="user-info">
         <div>
-          <h1 class = "title">Hi {{ request.user.username }}:</h1>
+          <h1 class = "title">hi {{ request.user.username }}!</h1>
         </div>
-          <h2 id = "userE" class = "userEmail">// here are your statistics:</h2>
-        <!-- <h2 class = "userEmail">// Email: {{ request.user.email }}</h2> -->
+          <h2 id = "userE" class = "userEmail">here are your statistics:</h2>
         <div class = "userWrapper">
           <div class = "userScore">
             <h2>Highest Score:</h2>
@@ -59,8 +59,7 @@
       </div>
       <div class="leaderboard">
         <div class = "titleWrapper">
-          <h1 class = "title">Global Leaderboard</h1> 
-          <img src = "{%static 'images/icon.svg' %}" title="click on a user's username to view their stats!" />
+          <h1 class = "title">global leaderboard</h1> 
         </div>
         <table>
           <tr>
