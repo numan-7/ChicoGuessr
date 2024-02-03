@@ -142,14 +142,18 @@ nav img {
 /* For screens up to 600px */
 @media screen and (max-width: 900px) {
   .menu-title {
+    text-align: center;
     font-size: 2.5rem;
   }
 }
 
 /* For screens up to 600px */
 @media screen and (max-width: 700px) {
+  .menu-button{
+    margin-left: 0;
+  }
   .menu-title {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
   .globe-img {
     margin-left: 0;
@@ -174,6 +178,14 @@ nav img {
 @media screen and (max-width: 400px) {
   .menu-title {
     font-size: 2rem;
+  }
+
+  nav img {
+    left: 0;
+  }
+
+  nav h1 {
+    left: 4rem;
   }
 
   .globe-img {
