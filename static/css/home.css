@@ -165,7 +165,9 @@ nav img {
   }
 
   .button-wrapper {
+    width: 100%;
     justify-content: start;
+    align-items: center;
   }
 
   .globe-img {
@@ -188,10 +190,14 @@ nav img {
     left: 4rem;
   }
 
-  .button-wrapper {
+  .menu-button {
     width: 100%;
     align-items: center;
     justify-content: center;
+  }
+
+  .menu-title {
+    width: 100%;
   }
 
   .globe-img {
