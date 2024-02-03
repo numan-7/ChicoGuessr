@@ -177,7 +177,7 @@ nav img {
 /* For screens up to 400px */
 @media screen and (max-width: 400px) {
   .menu-title {
-    font-size: 2rem;
+    font-size: 1.85rem;
   }
 
   nav img {
@@ -186,6 +186,12 @@ nav img {
 
   nav h1 {
     left: 4rem;
+  }
+
+  .button-wrapper {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
   }
 
   .globe-img {
