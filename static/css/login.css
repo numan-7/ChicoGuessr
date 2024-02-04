@@ -29,6 +29,7 @@ body {
     margin: 0;
     padding: 0;
     background: radial-gradient(66.5% 221.21% at 136.03% -61.44%,rgba(58,232,189,.5) 0%,rgba(58,232,189,0) 92.09%),radial-gradient(93.54% 126.91% at 29.15% -56.29%,rgba(58,232,189,.8) 0%,rgba(58,232,189,0) 92.09%),radial-gradient(86.19% 101.84% at -17.13% -24.8%,#7950e5 0%,rgba(121,80,229,0) 92.09%), #1a1a2e;
+    background-attachment: fixed;
 }
 
 h1, p, a {
