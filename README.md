@@ -1,6 +1,6 @@
 # ChicoGuessr - GeoGuessr Clone
 
-GeoGuessr clone made in collaboration with @lukhaz based in Chico, California:
+GeoGuessr clone made in collaboration with <a href="https://github.com/lukehaz" target="_blank">lukehaz </a>based in Chico, California:
 <br/>
 <a href="https://www.chicoguessr.xyz" target="_blank">Play Here</a>
 <br/>
