@@ -2,8 +2,6 @@
 
 GeoGuessr clone made in collaboration with <a href="https://github.com/lukehaz" target="_blank">lukehaz </a>based in Chico, California:
 <br/>
-<a href="https://www.chicoguessr.xyz" target="_blank">Play Here</a>
-<br/>
 <a href="https://www.youtube.com/watch?v=5f4Sn2td6gI" target="_blank">Preview Here</a>
 ## Setup
 
