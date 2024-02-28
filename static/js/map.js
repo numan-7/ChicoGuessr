@@ -56,7 +56,7 @@ function initStreetView() {
   updateFormFields(map.getCenter().lat(), map.getCenter().lng());
   // Update the marker position when the user double clicks on the map
 
-  map.addListener("dblclick", (event) => {
+  map.addListener("click", (event) => {
     if (marker) {
       marker.setPosition(event.latLng);
     } else {
